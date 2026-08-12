@@ -51,12 +51,18 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
 
 title: {
-default: "AERO Store | Premium Anime & Custom Keychains Pakistan",
-template: "%s | AERO Store",
+default: "AeroStore | Premium Anime & Custom Keychains Pakistan",
+template: "%s | AeroStore",
+},
+
+icons: {
+  icon: "/favicon.png",
+  shortcut: "/favicon.png",
+  apple: "/favicon.png",
 },
 
 description:
-"Buy premium anime keychains, cartoon collectibles and custom designs in Pakistan. AERO Store creates high-quality collectibles for anime and pop culture fans.",
+"Buy premium anime keychains, cartoon collectibles and custom designs in Pakistan. AeroStore creates high-quality collectibles for anime and pop culture fans.",
 
 
 keywords:[
@@ -66,7 +72,7 @@ keywords:[
 "cartoon keychains Pakistan",
 "anime gifts Pakistan",
 "premium keychains",
-"AERO Store",
+"AeroStore",
 ],
 
 
@@ -77,7 +83,7 @@ new URL("https://yourdomain.com"),
 openGraph:{
 
 title:
-"AERO Store | Premium Anime & Custom Keychains Pakistan",
+"AeroStore | Premium Anime & Custom Keychains Pakistan",
 
 description:
 "Premium anime, cartoon and custom collectibles crafted for true fans.",
@@ -86,7 +92,7 @@ url:
 "https://yourdomain.com",
 
 siteName:
-"AERO Store",
+"AeroStore",
 
 type:
 "website",
@@ -98,7 +104,7 @@ twitter:{
 card:"summary_large_image",
 
 title:
-"AERO Store | Premium Anime & Custom Keychains Pakistan",
+"AeroStore | Premium Anime & Custom Keychains Pakistan",
 
 description:
 "Premium anime and cartoon collectibles crafted for fans.",
