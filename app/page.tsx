@@ -357,7 +357,7 @@ collections.map((collection)=>(
 key={collection.id}
 
 
-href={`/collections/${collection.slug}`}
+href={`/products?category=${collection.slug}`}
 
 
 className="
