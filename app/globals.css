@@ -1,0 +1,336 @@
+@import "tailwindcss" source(none);
+
+@source "../app";
+@source "../components";
+
+@import "tw-animate-css";
+
+
+@custom-variant dark (&:is(.dark *));
+
+
+
+/*
+  AERO Design System
+  Premium matte black ecommerce aesthetic
+*/
+
+
+@theme inline {
+
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-border: var(--border);
+
+  --shadow-soft:
+    0 10px 40px -20px rgba(0,0,0,.8);
+
+  --shadow-lift:
+    0 25px 80px -35px rgba(0,0,0,.9);
+
+}
+
+
+
+:root {
+
+
+  --radius: 0.75rem;
+
+
+  --background:
+    oklch(0.12 0.002 60);
+
+
+  --foreground:
+    oklch(0.96 0.006 85);
+
+
+
+  --card:
+    oklch(0.17 0.003 60);
+
+
+  --card-foreground:
+    oklch(0.96 0.006 85);
+
+
+
+  --muted:
+    oklch(0.23 0.004 60);
+
+
+  --muted-foreground:
+    oklch(0.68 0.008 75);
+
+
+
+  --primary:
+    oklch(0.96 0.006 85);
+
+
+  --primary-foreground:
+    oklch(0.12 0.002 60);
+
+
+
+  --accent:
+    oklch(0.68 0.17 45);
+
+
+  --accent-foreground:
+    oklch(0.12 0.002 60);
+
+
+
+  --border:
+    oklch(0.28 0.004 60);
+
+
+
+}
+
+
+
+@layer base {
+
+
+* {
+
+  border-color: var(--color-border);
+
+  box-sizing:border-box;
+
+}
+
+
+
+html {
+
+  scroll-behavior:smooth;
+
+  background:
+    var(--background);
+
+}
+
+
+
+body {
+
+  min-height:100vh;
+
+  background:
+    var(--background);
+
+  color:
+    var(--foreground);
+
+  font-family:
+    var(--font-sans);
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  text-rendering:
+    optimizeLegibility;
+
+}
+
+
+
+::selection {
+
+  background:
+    oklch(0.68 0.17 45);
+
+  color:
+    black;
+
+}
+
+
+
+img {
+
+  user-select:none;
+
+  -webkit-user-drag:none;
+
+}
+
+
+
+h1,
+h2,
+h3,
+h4 {
+
+  font-family:
+    var(--font-display);
+
+  letter-spacing:
+    -0.03em;
+
+}
+
+
+
+button {
+
+  cursor:pointer;
+
+}
+
+
+
+a {
+
+  text-decoration:none;
+
+}
+
+
+
+}
+
+
+
+@utility shell {
+
+  width:min(1240px,92vw);
+
+  margin-inline:auto;
+
+}
+
+
+
+@utility eyebrow {
+
+  font-size:.6875rem;
+
+  letter-spacing:.25em;
+
+  text-transform:uppercase;
+
+  color:
+    var(--color-muted-foreground);
+
+}
+
+
+
+@utility hairline {
+
+  border-top:
+    1px solid var(--color-border);
+
+}
+
+
+
+
+
+/* Premium scrollbar */
+
+
+::-webkit-scrollbar {
+
+  width:8px;
+
+}
+
+
+
+::-webkit-scrollbar-track {
+
+  background:
+    var(--background);
+
+}
+
+
+
+::-webkit-scrollbar-thumb {
+
+  background:
+    oklch(0.32 0.005 60);
+
+  border-radius:999px;
+
+}
+
+
+
+::-webkit-scrollbar-thumb:hover {
+
+  background:
+    oklch(0.68 0.17 45);
+
+}
+
+
+
+
+
+/* Utility animations */
+
+
+@keyframes fade-up {
+
+  from {
+
+    opacity:0;
+
+    transform:
+      translateY(20px);
+
+  }
+
+
+  to {
+
+    opacity:1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+
+.animate-fade-up {
+
+  animation:
+    fade-up .6s ease forwards;
+
+}
