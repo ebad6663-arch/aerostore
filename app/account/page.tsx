@@ -21,7 +21,7 @@ export default async function AccountPage() {
     );
   }
 
-  const user = await prisma.user.findUnique({
+  const dbUser = await prisma.user.findUnique({
     where: {
       email: session.user.email,
     },
@@ -32,26 +32,26 @@ export default async function AccountPage() {
     },
   });
 
-  if (!user) {
+  if (!dbUser) {
     return null;
   }
 
   const cards = [
     {
       title: "My Orders",
-      value: user.orders.length,
+      value: dbUser.orders.length,
       icon: Package,
       href: "/orders",
     },
     {
       title: "Wishlist",
-      value: user.wishlist.length,
+      value: dbUser.wishlist.length,
       icon: Heart,
       href: "/wishlist",
     },
     {
       title: "Addresses",
-      value: user.addresses.length,
+      value: dbUser.addresses.length,
       icon: MapPin,
       href: "/account/addresses",
     },
@@ -66,6 +66,7 @@ export default async function AccountPage() {
   return (
     <main className="min-h-screen bg-[var(--background)]">
       <div className="mx-auto max-w-7xl px-6 py-16">
+
         <div className="mb-12">
           <p className="text-sm uppercase tracking-[0.3em] text-[var(--primary)]">
             My Account
@@ -74,13 +75,14 @@ export default async function AccountPage() {
           <h1 className="mt-4 text-5xl font-black text-[var(--text)]">
             Welcome,
             <br />
-            {user.name ?? "Customer"}
+            {dbUser.name ?? "Customer"}
           </h1>
 
           <p className="mt-4 text-[var(--muted)]">
-            {user.email}
+            {dbUser.email}
           </p>
         </div>
+
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {cards.map((card) => {
@@ -112,23 +114,25 @@ export default async function AccountPage() {
           })}
         </div>
 
+
         <div className="mt-12 rounded-3xl border border-[var(--border)] bg-[var(--card)] p-8">
           <h2 className="text-2xl font-bold text-[var(--text)]">
             Recent Activity
           </h2>
 
           <p className="mt-4 text-[var(--muted)]">
-            Total Orders: {user.orders.length}
+            Total Orders: {dbUser.orders.length}
           </p>
 
           <p className="mt-2 text-[var(--muted)]">
-            Wishlist Items: {user.wishlist.length}
+            Wishlist Items: {dbUser.wishlist.length}
           </p>
 
           <p className="mt-2 text-[var(--muted)]">
-            Saved Addresses: {user.addresses.length}
+            Saved Addresses: {dbUser.addresses.length}
           </p>
         </div>
+
       </div>
     </main>
   );
