@@ -1,8 +1,6 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
-
-import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 
 
@@ -14,7 +12,7 @@ export const {
 } = NextAuth({
 
 
-  adapter: PrismaAdapter(prisma),
+  
 
 
   providers: [
