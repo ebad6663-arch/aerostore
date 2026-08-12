@@ -33,6 +33,7 @@ export async function getDashboardStats() {
     recentOrders,
     recentCustomers,
   ] = await Promise.all([
+
     prisma.product.count({
       where: {
         deletedAt: null,
@@ -103,29 +104,23 @@ export async function getDashboardStats() {
           lte: 5,
         },
       },
-
       include: {
         category: true,
-
         images: {
           take: 1,
         },
       },
-
       orderBy: {
         stock: "asc",
       },
-
       take: 5,
     }),
 
     prisma.order.findMany({
       take: 5,
-
       orderBy: {
         createdAt: "desc",
       },
-
       include: {
         user: true,
       },
@@ -135,13 +130,12 @@ export async function getDashboardStats() {
       where: {
         role: "CUSTOMER",
       },
-
       take: 5,
-
       orderBy: {
         createdAt: "desc",
       },
     }),
+
   ]);
 
   return {
