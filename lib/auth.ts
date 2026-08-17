@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+
 import { prisma } from "@/lib/prisma";
 
 
@@ -11,12 +13,10 @@ export const {
   signOut,
 } = NextAuth({
 
-
-  
+  adapter: PrismaAdapter(prisma),
 
 
   providers: [
-
 
     Google({
 
@@ -64,7 +64,6 @@ export const {
         );
 
 
-
         const adminUsername =
           process.env.ADMIN_USERNAME ?? "";
 
@@ -75,18 +74,23 @@ export const {
 
 
         console.log("ADMIN LOGIN CHECK:", {
+
           username,
+
           envUsername: adminUsername,
+
           passwordLength: password.length,
+
           envPasswordLength: adminPassword.length,
+
         });
 
 
 
-        if(
+        if (
           username !== adminUsername ||
           password !== adminPassword
-        ){
+        ) {
 
           return null;
 
@@ -104,12 +108,9 @@ export const {
 
         };
 
-
       },
 
-
     }),
-
 
   ],
 
@@ -118,6 +119,40 @@ export const {
   session: {
 
     strategy: "jwt",
+
+  },
+
+
+
+  callbacks: {
+
+
+    async jwt({ token, user }) {
+
+      if (user) {
+
+        token.id = user.id;
+
+      }
+
+      return token;
+
+    },
+
+
+
+    async session({ session, token }) {
+
+      if (session.user) {
+
+        session.user.id = token.id as string;
+
+      }
+
+      return session;
+
+    },
+
 
   },
 
