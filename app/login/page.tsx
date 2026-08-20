@@ -154,35 +154,42 @@ Sign in to continue shopping
 
 
 <button
+  type="button"
+  onClick={() => {
+    const userAgent =
+      typeof navigator !== "undefined"
+        ? navigator.userAgent || ""
+        : "";
 
-type="button"
+    const isInstagramBrowser =
+      /Instagram/i.test(userAgent);
 
-onClick={()=>
-signIn(
-"google",
-{
-callbackUrl,
-}
-)
-}
+    if (isInstagramBrowser) {
+      setError(
+        'Google Login cannot be completed inside Instagram. Please open AeroStore in Safari or Chrome, then try Google Login again.'
+      );
 
-className="
-h-12
-w-full
-rounded-full
-border
-border-white/10
-bg-white/5
-font-semibold
-text-white
-transition
-hover:bg-white/10
-"
+      return;
+    }
 
+    signIn("google", {
+      callbackUrl,
+    });
+  }}
+  className="
+    h-12
+    w-full
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    font-semibold
+    text-white
+    transition
+    hover:bg-white/10
+  "
 >
-
-Continue with Google
-
+  Continue with Google
 </button>
 
 
