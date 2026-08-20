@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 import { PaymentMethod } from "@prisma/client";
@@ -32,6 +33,7 @@ loading,
 
 
 const router = useRouter();
+const { status } = useSession();
 
 
 
@@ -72,7 +74,13 @@ subtotal + shipping;
 
 
 async function handlePlaceOrder(){
+if (status !== "authenticated") {
+  router.push(
+    `/login?callbackUrl=${encodeURIComponent("/checkout")}`
+  );
 
+  return;
+}
 
 
 if(
